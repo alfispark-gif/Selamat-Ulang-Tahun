@@ -87,6 +87,8 @@ html, body {
   background: var(--bg);
   transition: background 0.4s ease;
 }
+#scene-7.scene.active ~ #confetti-overlay,
+#scene-7 { z-index: 2; }
 
 .scene {
   position: absolute;
@@ -267,44 +269,33 @@ canvas.critter {
   min-height: 90px;
 }
 
-/* ---------- Final card/book scene (mirrors the original flip-card) ---------- */
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-
+/* ---------- Final card/book scene ---------- */
 .book-hint {
   font-size: 12px;
   opacity: 0.7;
 }
 
-#scene-7 {
-  font-family: 'Indie Flower', cursive;
-}
-
 .book-card {
   position: relative;
-  width: 210px;
-  height: 260px;
+  width: 220px;
+  height: 300px;
   background: #e0e1dc;
   color: #013243;
   transform-style: preserve-3d;
-  transform: perspective(2000px);
-  box-shadow: inset 210px 0 50px rgba(0,0,0,.5), 12px 0 40px rgba(0,0,0,.5);
-  transition: 1s;
-}
-
-.book-card:hover,
-.book-card.flipped {
-  transform: perspective(2000px) rotate(8deg) scale(1.06);
-  box-shadow: inset 12px 0 40px rgba(0,0,0,.5), 0 8px 60px rgba(0,0,0,.5);
+  perspective: 1400px;
+  box-shadow: inset 220px 0 40px rgba(0,0,0,.5), 12px 0 40px rgba(0,0,0,.5);
+  transition: box-shadow .6s ease;
+  border-radius: 4px;
+  overflow: visible;
 }
 
 .book-card::before {
   content: '';
   position: absolute;
-  top: -5px;
+  top: -4px;
   left: 0;
   width: 100%;
-  height: 5px;
+  height: 4px;
   background: #BAC1BA;
   transform-origin: bottom;
   transform: skewX(-45deg);
@@ -314,8 +305,8 @@ canvas.critter {
   content: '';
   position: absolute;
   top: 0;
-  right: -5px;
-  width: 5px;
+  right: -4px;
+  width: 4px;
   height: 100%;
   background: #92A29C;
   transform-origin: left;
@@ -328,7 +319,6 @@ canvas.critter {
   position: relative;
   transform-origin: left;
   transition: .7s;
-  overflow: hidden;
 }
 
 .book-card .bark {
@@ -336,3 +326,101 @@ canvas.critter {
   inset: 0;
   background: #e0e1dc;
   opacity: 0;
+  transition: .6s;
+}
+
+.book-card .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+
+.book-card:hover .imgBox,
+.book-card.flipped .imgBox {
+  transform: rotateY(-135deg);
+}
+
+.book-card:hover .bark,
+.book-card.flipped .bark {
+  opacity: 1;
+  box-shadow: 160px 120px 60px rgba(0,0,0,.4) inset;
+}
+
+.book-card .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 30px 14px 0 14px;
+  z-index: -1;
+}
+
+.book-card .details h4 {
+  font-family: 'PixelFallback', 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  line-height: 1.1;
+  margin: 2px 0;
+  text-align: center;
+}
+
+.book-card .color1 { color: #ff6c47; }
+.book-card .color2 { color: #16aadb; }
+
+.book-card .details p {
+  font-size: 11px;
+  line-height: 1.15;
+  margin: 2px 0;
+  transform: rotate(-4deg);
+}
+
+.book-card .details .text-right {
+  text-align: right;
+  transform: rotate(-4deg);
+}
+
+/* ---------- Scene 7: final flip card ---------- */
+#scene-7 { background: #6fe3ff; }
+.bday-card {
+  position: relative;
+  width: 210px;
+  height: 280px;
+  background: #e0e1dc;
+  transform-style: preserve-3d;
+  perspective: 1400px;
+  box-shadow: inset 260px 0 40px rgba(0,0,0,.4), 14px 0 40px rgba(0,0,0,.4);
+  transition: box-shadow .6s ease;
+  font-family: 'Indie Flower', cursive;
+  color: #013243;
+}
+.bday-card:hover { box-shadow: inset 14px 0 30px rgba(0,0,0,.4), 0 8px 60px rgba(0,0,0,.4); }
+.bday-card:before {
+  content: ''; position: absolute; top: -4px; left: 0; width: 100%; height: 4px;
+  background: #BAC1BA; transform-origin: bottom; transform: skewX(-45deg);
+}
+.bday-card:after {
+  content: ''; position: absolute; top: 0; right: -4px; width: 4px; height: 100%;
+  background: #92A29C; transform-origin: left; transform: skewY(-45deg);
+}
+.bday-card .imgBox {
+  width: 100%; height: 100%; position: relative;
+  transform-origin: left; transition: .7s;
+}
+.bday-card:hover .imgBox { transform: rotateY(-150deg); }
+.bday-card .bark {
+  position: absolute; width: 100%; height: 100%;
+  background: #e0e1dc; opacity: 0; transition: .6s;
+}
+.bday-card:hover .bark { opacity: 1; box-shadow: 210px 140px 70px rgba(0,0,0,.4) inset; }
+.bday-card .imgBox img { width: 100%; height: 100%; object-fit: contain; padding: 20px; box-sizing: border-box; }
+.bday-card .details {
+  position: absolute; top: 0; left: 0; box-sizing: border-box;
+  padding: 0 8px 0 14px; z-index: -1; margin-top: 26px; width: 100%;
+}
+.bday-card .details h4 { font-size: 22px; line-height: 4px; margin: 10px 0; text-align: center; font-family: 'Amatic SC', cursive; }
+.bday-card .details p { font-size: 11px; line-height: 3px; transform: rotate(-6deg); padding: 0 0 0 14px; margin: 8px 0; }
+.bday-card .color1 { color: #ff6c47; }
+.bday-card .color2 { color: #16aadb; }
+.text-right { text-align: right !important; transform: rotate(-6deg); }
+.card-hint { opacity: 0.7; }
