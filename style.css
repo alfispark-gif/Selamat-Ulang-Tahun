@@ -313,11 +313,12 @@ canvas.critter {
   transform: skewY(-45deg);
 }
 
-.book-card .imgBox img {
+.book-card .imgBox {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: #fff;
+  position: relative;
+  transform-origin: left;
+  transition: .7s;
 }
 
 .book-card .bark {
