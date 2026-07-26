@@ -26,7 +26,6 @@ html, body {
   box-shadow: 0 12px 40px rgba(0,0,0,0.5);
   border: 3px solid rgba(0,0,0,0.15);
 
-  /* theme variables, swapped per active scene via JS */
   --bg: #f6e4c9;
   --bar: #ff5fa0;
   --accent: #ff5fa0;
@@ -34,7 +33,6 @@ html, body {
   transition: background 0.4s ease;
 }
 
-/* On phones / narrow screens: fill the whole viewport instead of a tiny fixed box */
 @media (max-width: 480px), (max-height: 500px) {
   html, body { overflow: auto; }
   #app-window {
@@ -112,7 +110,6 @@ html, body {
   z-index: 2;
 }
 
-/* twinkling sparkle background, colored per scene via --accent */
 .sparkle-layer {
   position: absolute;
   inset: 0;
@@ -133,7 +130,6 @@ html, body {
   50% { opacity: 0.75; transform: scale(1.3); }
 }
 
-/* full-screen falling confetti overlay */
 #confetti-overlay {
   position: absolute;
   inset: 0;
@@ -155,7 +151,6 @@ html, body {
   100% { transform: translateY(420px) rotate(540deg); opacity: 0.3; }
 }
 
-/* gift shaking before it pops open */
 .gift-box.shaking canvas {
   animation: gift-shake 0.28s ease-in-out infinite;
 }
@@ -267,7 +262,7 @@ canvas.critter {
   min-height: 90px;
 }
 
-/* ---------- Final card/book scene ---------- */
+/* ---------- Final card/book scene: same shadow-flip animation as the original card ---------- */
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
@@ -288,14 +283,14 @@ canvas.critter {
   color: #013243;
   transform-style: preserve-3d;
   transform: perspective(2000px);
-  box-shadow: inset 210px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+  box-shadow: inset 280px 0 35px rgba(0, 0, 0, .5), 14px 0 42px rgba(0, 0, 0, .5);
   transition: 2s;
 }
 
 .book-card:hover,
 .book-card.flipped {
   transform: perspective(2000px) rotate(15deg) scale(1.2);
-  box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+  box-shadow: inset 14px 0 35px rgba(0, 0, 0, .5), 0 7px 70px rgba(0, 0, 0, .5);
 }
 
 .book-card::before {
@@ -332,6 +327,8 @@ canvas.critter {
 
 .book-card .bark {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: #e0e1dc;
@@ -353,7 +350,7 @@ canvas.critter {
 .book-card.flipped .bark {
   opacity: 1;
   transition: .6s;
-  box-shadow: 210px 140px 70px rgba(0,0,0,.4) inset;
+  box-shadow: 210px 130px 70px rgba(0, 0, 0, .4) inset;
 }
 
 .book-card .details {
@@ -361,17 +358,18 @@ canvas.critter {
   top: 0;
   left: 0;
   box-sizing: border-box;
-  padding: 0 0 0 10px;
+  padding: 14px 10px 10px 10px;
   z-index: -1;
-  margin-top: 22px;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .book-card .details h4 {
   font-family: 'Amatic SC', cursive;
-  font-size: 24px;
-  line-height: 2px;
-  margin: 10px 0;
+  font-size: 22px;
+  line-height: 1.15;
+  margin: 0;
   text-align: center;
 }
 
@@ -379,15 +377,15 @@ canvas.critter {
 .book-card .color2 { color: #16aadb; }
 
 .book-card .details p {
-  font-size: 12px;
-  line-height: 4px;
-  transform: rotate(-10deg);
-  padding: 0 0 0 14px;
-  margin: 6px 0;
+  font-size: 10.5px;
+  line-height: 1.35;
+  transform: rotate(-6deg);
+  padding: 0 0 0 10px;
+  margin: 3px 0;
 }
 
 .book-card .details .text-right {
   text-align: right;
-  padding-right: 10px;
-  transform: rotate(-10deg);
+  padding-right: 8px;
+  transform: rotate(-6deg);
 }
